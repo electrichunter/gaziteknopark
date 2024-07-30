@@ -21,7 +21,7 @@ import { Adminmenu2Component } from './admin/adminmenu2/adminmenu2.component';
 import { DeleteDirective } from './admin/directives/admin/delete.directive';
 import { HaberlerAdminComponent } from './admin/haberler-admin/haberler-admin.component';
 import { SkillMenuComponent } from './admin/haberler-admin/skill-menu/skill-menu.component';
-import { EditorModule } from 'primeng/editor'; // PrimeNG Editor Modülü
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,8 +47,7 @@ import { EditorModule } from 'primeng/editor'; // PrimeNG Editor Modülü
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    EditorModule, // PrimeNG Editor Modülü
-    CKEditorModule // CKEditor modülünü imports listesine ekleyin
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
