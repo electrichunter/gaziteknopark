@@ -1,0 +1,21 @@
+
+<app-adminmenu></app-adminmenu>
+<form (ngSubmit)="onSubmit()" #uploadForm="ngForm">
+  <!-- Dosya yükleme input -->
+<input type="file" (change)="onFileSelected($event)" />
+<!-- Dosyayı yükle ve etkinliği kaydet butonu -->
+<button type="submit">Yükle ve Kaydet</button>
+
+</form>
+
+
+<div *ngFor="let etkinlik of etkinlikler">
+  <p>{{ etkinlik.etkid }} - {{ etkinlik.etkinlik_img_yol }}</p>
+  <button (click)="deleteEtkinlik(etkinlik.etkid)">Sil</button>
+</div>
+
+<!-- <form *ngIf="seciliEtkinlik.etkid" (ngSubmit)="etkinlikGuncelle()">
+  <input type="text" [(ngModel)]="seciliEtkinlik.etkinlik_adi" name="etkinlikAdi" required>
+  <input type="text" [(ngModel)]="seciliEtkinlik.etkinlik_img_yol" name="resimYolu" required>
+  <button type="submit">Güncelle</button>
+</form> -->

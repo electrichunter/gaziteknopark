@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "gazi", "gazi", "{10416086-7F61-4C15-9AD1-F9C62BBCC201}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E36FC0EE-EAE7-4884-8BB4-F06022593DB5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "app", "gazi\src\app\app.csproj", "{9B22F88D-D9F8-455B-9D74-B5DCD79BEE86}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9B22F88D-D9F8-455B-9D74-B5DCD79BEE86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B22F88D-D9F8-455B-9D74-B5DCD79BEE86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B22F88D-D9F8-455B-9D74-B5DCD79BEE86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B22F88D-D9F8-455B-9D74-B5DCD79BEE86}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E36FC0EE-EAE7-4884-8BB4-F06022593DB5} = {10416086-7F61-4C15-9AD1-F9C62BBCC201}
+		{9B22F88D-D9F8-455B-9D74-B5DCD79BEE86} = {E36FC0EE-EAE7-4884-8BB4-F06022593DB5}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {54F9F0C3-872E-4AE9-8526-571345B80107}
+	EndGlobalSection
+EndGlobal

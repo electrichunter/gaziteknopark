@@ -1,0 +1,72 @@
+
+<app-adminmenu></app-adminmenu>
+
+
+<div style="height: auto;">
+  <div class="baslık">
+    <h1 class="baslık">Slider Yönetimi</h1>
+  </div>
+
+  <input  type="file" (change)="onFileChange($event)" />
+  <!-- <button class="upload-button" (click)="uploadSliderImage()">Slider Resmi Yükle ve Kaydet</button> -->
+
+
+  <button (click)="uploadSliderImage()">
+    <div class="svg-wrapper-1">
+      <div class="svg-wrapper">
+        <svg
+          height="24"
+          width="24"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M0 0h24v24H0z" fill="none"></path>
+          <path
+            d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+            fill="currentColor"
+          ></path>
+        </svg>
+      </div>
+    </div>
+    <span> Kaydet</span>
+  </button>
+  
+
+  <div class="slidercontainer">
+    <div *ngIf="sliders && sliders.length > 0">
+      <div id="slider-wrapper">
+        <div class="inner-wrapper">
+          <input *ngFor="let slider of sliders; let i = index" type="radio" name="slide" class="control" [id]="'Slide' + (i + 1)" />
+          <label *ngFor="let slider of sliders; let i = index" [for]="'Slide' + (i + 1)" class="buttons" [style]="'margin-left: ' + (-36 + (i * 24)) + 'px'"></label>
+
+          <div class="overflow-wrapper">
+            <a *ngFor="let slider of sliders; let i = index" class="slide" [attr.href]="'#Slide' + (i + 1)">
+              <img [src]="slider.resim_yol" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slider kontrol noktaları -->
+      <div class="controls">
+        <label *ngFor="let slider of sliders; let i = index" [for]="'Slide' + (i + 1)" class="control-dot"></label>
+      </div>
+
+      <div class="sliderResimTablo">
+        <ul style="list-style-type:none">
+          <li *ngFor="let slider of sliders; let i = index">
+            <div class="card">
+              <img [src]="slider.resim_yol" alt="Slider Image" />
+              <br><br>
+              <button class="delete-button" (click)="deleteSlider(i)">Sil</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div *ngIf="!sliders || sliders.length === 0">
+      <p>Slider bulunamadı.</p>
+    </div>
+  </div>
+</div>

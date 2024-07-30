@@ -1,0 +1,90 @@
+<app-adminmenu></app-adminmenu>
+
+<form [formGroup]="myForm" (ngSubmit)="saveHaber()" class="frm-haberler">
+  <div class="menu-text">
+    <!-- Resim yükleme butonu -->
+    <button class="button" style="margin: 50px;" (click)="openFileDialog()">
+      <svg viewBox="0 0 16 16" class="bi bi-image" fill="currentColor" height="16" width="16" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"></path>
+        <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1z"></path>
+      </svg>
+    </button>
+
+    <!-- Dosya input elemanı, görünmez olacak şekilde ayarlanır -->
+    <input type="file" #fileInput (change)="onFileChange($event)" style="display: none;">
+  </div>
+
+  <!-- Kaydetme butonu -->
+  <button class="button" style="margin-top: 120px; margin-left: 10vh;" type="submit">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-floppy-fill" viewBox="0 0 16 16">
+      <path d="M0 1.5A1.5 1.5 0 0 1 1.5 0H3v5.5A1.5 1.5 0 0 0 4.5 7h7A1.5 1.5 0 0 0 13 5.5V0h.086a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5H14v-5.5A1.5 1.5 0 0 0 12.5 9h-9A1.5 1.5 0 0 0 2 10.5V16h-.5A1.5 1.5 0 0 1 0 14.5z"></path>
+      <path d="M3 16h10v-5.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5zm9-16H4v5.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5zM9 1h2v4H9z"></path>
+    </svg>
+  </button>
+
+  <!-- Yazı Stilini 30px Yapma -->
+ <!--  <button class="button" style="margin-top: 120px; margin-left: 50px;" (click)="changeFontSize(30)">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-alphabet-uppercase" viewBox="0 0 16 16">
+      <path d="M1.226 10.88H0l2.056-6.26h1.42l2.047 6.26h-1.29l-.48-1.61H1.707l-.48 1.61ZM2.76 5.818h-.054l-.75 2.532H3.51zm3.217 5.062V4.62h2.56c1.09 0 1.808.582 1.808 1.54 0 .762-.444 1.22-1.05 1.372v.055c.736.074 1.365.587 1.365 1.528 0 1.119-.89 1.766-2.133 1.766zM7.18 5.55v1.675h.8c.812 0 1.171-.308 1.171-.853 0-.51-.328-.822-.898-.822zm0 2.537V9.95h.903c.951 0 1.342-.312 1.342-.909 0-.591-.382-.954-1.095-.954zm5.089-.711v.775c0 1.156.49 1.803 1.347 1.803.705 0 1.163-.454 1.212-1.096H16v.12C15.942 10.173 14.95 11 13.607 11c-1.648 0-2.573-1.073-2.573-2.849v-.78c0-1.775.934-2.871 2.573-2.871 1.347 0 2.34.849 2.393 2.087v.115h-1.172c-.05-.665-.516-1.156-1.212-1.156-.849 0-1.347.67-1.347 1.83"/>
+    </svg>
+  </button> -->
+
+  <div class="editor-container">
+    <div class="editor-header">
+      <input type="text" id="titleInput" formControlName="title" placeholder="Başlık yazın..." />
+    </div>
+
+    <!-- Seçilen resmi gösteren img etiketi -->
+    <div class="resim-haberler" *ngIf="selectedImageUrl">
+      <img [src]="selectedImageUrl" alt="Seçilen Resim" style="width: 300px; height: 300px; margin-top: 20px;">
+    </div>
+<!-- app.component.html -->
+
+
+ 
+<!-- <ckeditor 
+  [(ngModel)]="editorData" 
+  [editor]="Editor"
+  style="width: 100vh; height: auto;">
+</ckeditor> -->
+
+
+
+
+
+
+<p-editor formControlName="content" [(ngModel)]="editorData" [style]="{ height: '320px' }"></p-editor>
+  
+<!-- app.component.html -->
+
+
+
+    <div class="haberler-container">
+      <table class="haberler-table">
+        <thead>
+          <tr>
+            <th>Başlık</th>
+            <th>Resim</th>
+            <th>İşlemler</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let haber of haberler">
+            <!-- Başlıkları burada gösteriyoruz -->
+            <td>{{ haber.haberBasligi }}</td>
+            
+            <td *ngIf="haber.haberResimData">
+              <img [src]="haber.haberResimData" alt="Haber Resmi" class="haber-resim">
+              
+            </td>
+            <td>
+              <button  (click)="deleteHaber(haber.id)" class="noselect"><span class="text">Delete</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path></svg></span></button>
+             <!--  <button (click)="deleteHaber(haber.id)" class="delete-button">Sil</button> -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+  </div>
+</form>
